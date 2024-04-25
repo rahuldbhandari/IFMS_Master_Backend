@@ -1,0 +1,6 @@
+@IFMS_Master_Backend_HostAddress = http://localhost:5225
+
+GET {{IFMS_Master_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
