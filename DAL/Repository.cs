@@ -1,40 +1,41 @@
-﻿using IFMS_Master_Backend.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+
+using IFMS_Master_Backend.DAL.Interface;
 
 namespace IFMS_Master_Backend.DAL
 {
     public abstract class Repository<T, Tcontext> : IRepository<T> where T : class where Tcontext : DbContext
     {
-        protected readonly Tcontext ifmsContext = null;
+        protected readonly Tcontext IfmsContext = null;
 
         public Repository(Tcontext context)
         {
-            this.ifmsContext = context;
+            this.IfmsContext = context;
         }
 
 
         public bool IsTransactionRunning()
         {
-            return this.ifmsContext.Database.CurrentTransaction == null ? false : true;
+            return this.IfmsContext.Database.CurrentTransaction == null ? false : true;
         }
         private IDbContextTransaction BeginTran()
         {
-            return this.ifmsContext.Database.BeginTransaction();
+            return this.IfmsContext.Database.BeginTransaction();
         }
 
 
 
         public IExecutionStrategy GetExecutionStrategy()
         {
-            return this.ifmsContext.Database.CreateExecutionStrategy();
+            return this.IfmsContext.Database.CreateExecutionStrategy();
         }
 
 
         public IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition)
         {
-            IQueryable<T> result = this.ifmsContext.Set<T>();
+            IQueryable<T> result = this.IfmsContext.Set<T>();
             if (condition != null)
             {
                 result = result.Where(condition);
@@ -45,7 +46,7 @@ namespace IFMS_Master_Backend.DAL
 
         public async Task<ICollection<T>> GetAllByConditionAsync(Expression<Func<T, bool>> condition)
         {
-            IQueryable<T> result = this.ifmsContext.Set<T>();
+            IQueryable<T> result = this.IfmsContext.Set<T>();
             if (condition != null)
             {
                 result = result.Where(condition);
@@ -56,50 +57,45 @@ namespace IFMS_Master_Backend.DAL
 
         public IQueryable<T> GetAll()
         {
-            IQueryable<T> result = this.ifmsContext.Set<T>();
+            IQueryable<T> result = this.IfmsContext.Set<T>();
             return result;
         }
 
         public async Task<ICollection<T>> GetAllAsync()
         {
-            IQueryable<T> result = this.ifmsContext.Set<T>();
+            IQueryable<T> result = this.IfmsContext.Set<T>();
             return await result.ToListAsync();
         }
 
-
-
-        public IQueryable<T> GetSingle(Expression<Func<T, bool>> condition)
+        public T GetSingle(Expression<Func<T, bool>> condition)
         {
-            IQueryable<T> result = this.ifmsContext.Set<T>();
-            return result;
+            return this.IfmsContext.Set<T>().Where(condition).FirstOrDefault();
         }
         public async Task<T> GetSingleAysnc(Expression<Func<T, bool>> condition)
         {
-            var retValue = await this.ifmsContext.Set<T>().Where(condition).SingleOrDefaultAsync();
+            var retValue = await this.IfmsContext.Set<T>().Where(condition).SingleOrDefaultAsync();
 
             return retValue;
         }
-
-
         public List<T> GetMultiple(Expression<Func<T, bool>> condition)
         {
-            return this.ifmsContext.Set<T>().Where(condition).ToList();
+            return this.IfmsContext.Set<T>().Where(condition).ToList();
         }
         public async Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> condition)
         {
-            var result = await this.ifmsContext.Set<T>().Where(condition).ToListAsync();
+            var result = await this.IfmsContext.Set<T>().Where(condition).ToListAsync();
             return result;
         }
 
         public IQueryable<T> GetAllByLikeCondition(Expression<Func<T, string>> propertySelector, string value)
         {
-            return this.ifmsContext.Set<T>()
+            return this.IfmsContext.Set<T>()
                 .Where(entity => EF.Functions.Like(EF.Property<string>(entity, GetPropertyName(propertySelector)), $"%{value}%"));
         }
 
         public async Task<ICollection<T>> GetAllByLikeConditionAsync(Expression<Func<T, string>> propertySelector, string value)
         {
-            return await this.ifmsContext.Set<T>()
+            return await this.IfmsContext.Set<T>()
                 .Where(entity => EF.Functions.Like(EF.Property<string>(entity, GetPropertyName(propertySelector)), $"%{value}%"))
                 .ToListAsync();
         }
@@ -118,30 +114,28 @@ namespace IFMS_Master_Backend.DAL
             throw new ArgumentException("Invalid property selector");
         }
 
-
         public bool Add(T entity)
         {
-            this.ifmsContext.Set<T>().Add(entity);
+            this.IfmsContext.Set<T>().Add(entity);
             return true;
         }
 
         public bool Update(T entity)
         {
-            this.ifmsContext.Entry(entity).State = EntityState.Modified;
+            this.IfmsContext.Entry(entity).State = EntityState.Modified;
             return true;
         }
 
         public bool Delete(T entity)
         {
-            this.ifmsContext.Set<T>().Remove(entity);
+            this.IfmsContext.Set<T>().Remove(entity);
             return true;
         }
 
 
         public void SaveChangesManaged()
         {
-            this.ifmsContext.SaveChanges();
+            this.IfmsContext.SaveChanges();
         }
-
     }
 }

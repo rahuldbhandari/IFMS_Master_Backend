@@ -11,6 +11,10 @@ namespace IFMS_Master_Backend.Mapper
             CreateMap<MajorHeadModel, MajorHead>().ReverseMap();
             CreateMap<SubMajorHeadModel, SubMajorHead>().ReverseMap();
             CreateMap<MinorHeadModel, MinorHead>().ReverseMap();
+            CreateMap<Detailhead, DetailHeadModel>();
+            CreateMap<DetailHeadModel, Detailhead>();
+            CreateMap<SubDetailHead, SubDetailHeadModel>();
+            CreateMap<SubDetailHeadModel, SubDetailHead>();
         }
     }
 }
