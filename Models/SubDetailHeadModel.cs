@@ -3,8 +3,8 @@
     public class SubDetailHeadModel
     {
         public int Id { get; set; }
+        public string Code { get; set; } = null!;
         public string? Name { get; set; }
-        public string? Code{ get; set; }
-        public short? DetailHeadId { get; set; }
+        public int? DetailHeadId { get; set; }
     }
 }

@@ -6,6 +6,6 @@ namespace IFMS_Master_Backend.Models
     {
         public T result { get; set; }
         public HttpStatusCode statusCode { get; set; }
-        public string errormessage { get; set; }
+        public string errorMessage { get; set; }
     }
 }

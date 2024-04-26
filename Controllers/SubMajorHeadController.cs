@@ -1,5 +1,4 @@
-﻿using IFMS_Master_Backend.BAL.Interfaces;
-using IFMS_Master_Backend.DAL;
+﻿using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace IFMS_Master_Backend.DAL
+﻿namespace IFMS_Master_Backend.Models
 {
-    public partial class MinorHeadModel
+    public class MinorHeadModel
     {
-        
+        public int Id { get; set; }
         public string Code { get; set; } = null!;
         public string? Name { get; set; }
         public int? SubMajorId { get; set; }
-        
     }
 }

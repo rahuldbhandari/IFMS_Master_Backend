@@ -1,11 +1,10 @@
-﻿using IFMS_Master_Backend.BAL.Interfaces;
+﻿using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace IFMS_Master_Backend.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class DetailHeadController : ControllerBase
@@ -25,18 +24,19 @@ namespace IFMS_Master_Backend.Controllers
                 response.statusCode = HttpStatusCode.OK;
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
             return response;
-            
+
         }
-        [HttpPost("Detail_head-add")]
+        [HttpPost("DetailHeadAdd")]
 
-  
 
-        public async Task<ServiceResponse<DetailHeadModel>> addDetailHead([FromBody] DetailHeadModel Detl)
+
+        public async Task<ServiceResponse<DetailHeadModel>> addDetailHead(DetailHeadModel Detl)
         {
             ServiceResponse<DetailHeadModel> response = new ServiceResponse<DetailHeadModel>();
             try
@@ -44,15 +44,15 @@ namespace IFMS_Master_Backend.Controllers
                 response.result = await _DetailHeadService.CreateDetail(Detl);
                 response.statusCode = HttpStatusCode.Created;
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
             return response;
         }
 
-        [HttpDelete("detail_head-delete/{Id}")]
+        [HttpDelete("DetailHeadDelete/{Id}")]
         public async Task<ServiceResponse<bool>> DeleteDetail(int Id)
         {
             ServiceResponse<bool> response = new ServiceResponse<bool>();
@@ -62,10 +62,10 @@ namespace IFMS_Master_Backend.Controllers
                 response.statusCode = HttpStatusCode.OK;
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                response.statusCode = HttpStatusCode.BadRequest;    
-                   response.errormessage = "Error";
+                response.statusCode = HttpStatusCode.BadRequest;
+                response.errorMessage = "Error";
             }
             return response;
         }
@@ -80,15 +80,15 @@ namespace IFMS_Master_Backend.Controllers
                 response.result = await _DetailHeadService.GetDetailHead(Id);
                 response.statusCode = HttpStatusCode.Found;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                response.statusCode = HttpStatusCode.BadRequest;    
-                   response.errormessage = "Error";
+                response.statusCode = HttpStatusCode.BadRequest;
+                response.errorMessage = "Error";
             }
             return response;
         }
 
-        [HttpPut("detail_head-update/{Id}")] // Corrected route declaration
+        [HttpPut("DetailHeadUpdate/{Id}")] // Corrected route declaration
         public async Task<ServiceResponse<bool>> UpdateDetail(int Id, [FromBody] DetailHeadModel Detl)
         {
             ServiceResponse<bool> response = new ServiceResponse<bool>();
@@ -96,17 +96,16 @@ namespace IFMS_Master_Backend.Controllers
             {
 
 
-                response.result = await _DetailHeadService.UpdateDetail(Id,Detl);
+                response.result = await _DetailHeadService.UpdateDetail(Id, Detl);
                 response.statusCode = HttpStatusCode.NotFound; // Set status code to indicate success
             }
             catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
 
             return response; // Return response with appropriate status code
         }
     }
 }
-

@@ -1,5 +1,4 @@
-﻿using IFMS_Master_Backend.BAL.Interfaces;
-
+﻿using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -28,7 +27,7 @@ namespace IFMS_Master_Backend.Controllers
             catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
             return response;
         }
@@ -45,12 +44,12 @@ namespace IFMS_Master_Backend.Controllers
             catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
             return response;
         }
 
-        [HttpPost("Sub-Detail-head-add")]
+        [HttpPost("SubDetailHeadAdd")]
 
         public async Task<ServiceResponse<SubDetailHeadModel>> addSubDetailHead([FromBody] SubDetailHeadModel SubDe)
         {
@@ -60,18 +59,18 @@ namespace IFMS_Master_Backend.Controllers
                 response.result = await _SubDetailHeadService.CreateSubDetail(SubDe);
                 response.statusCode = HttpStatusCode.Created;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                response.statusCode=HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.statusCode = HttpStatusCode.BadRequest;
+                response.errorMessage = "Error";
             }
             return response;
         }
 
-        [HttpDelete("Sub-detail-head-delete/{Id}")]
+        [HttpDelete("SubDetailHeadDelete/{Id}")]
         public async Task<ServiceResponse<bool>> DeleteSubDetail(int Id)
         {
-           ServiceResponse<bool> response = new ServiceResponse<bool>();    
+            ServiceResponse<bool> response = new ServiceResponse<bool>();
             try
             {
                 response.result = await _SubDetailHeadService.DeleteSubDetail(Id);
@@ -80,13 +79,13 @@ namespace IFMS_Master_Backend.Controllers
             catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
             return response;
         }
 
-        [HttpPut("Sub-detail-update/{Id}")]
-      
+        [HttpPut("SubDetailUpdate/{Id}")]
+
         public async Task<ServiceResponse<bool>> UpdateSubDetail(int Id, [FromBody] SubDetailHeadModel Detl)
         {
             ServiceResponse<bool> response = new ServiceResponse<bool>();
@@ -100,7 +99,7 @@ namespace IFMS_Master_Backend.Controllers
             catch (Exception ex)
             {
                 response.statusCode = HttpStatusCode.BadRequest;
-                response.errormessage = "Error";
+                response.errorMessage = "Error";
             }
 
             return response; // Return response with appropriate status code
@@ -109,4 +108,3 @@ namespace IFMS_Master_Backend.Controllers
 
     }
 }
-

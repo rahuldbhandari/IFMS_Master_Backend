@@ -1,7 +1,6 @@
 ﻿using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.Interfaces;
+using IFMS_Master_Backend.DAL.IRepositories;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace IFMS_Master_Backend.DAL.Repositories
 {
@@ -16,6 +15,6 @@ namespace IFMS_Master_Backend.DAL.Repositories
             IQueryable<SubMajorHead> result = this.ifmsContext.Set<SubMajorHead>().Where(s => s.IsDeleted == false);
             return await result.ToListAsync();
         }
-        
+
     }
 }

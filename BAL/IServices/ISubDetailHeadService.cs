@@ -1,6 +1,6 @@
 ﻿using IFMS_Master_Backend.Models;
 
-namespace IFMS_Master_Backend.BAL.Interfaces
+namespace IFMS_Master_Backend.BAL.IServices
 {
     public interface ISubDetailHeadService
     {

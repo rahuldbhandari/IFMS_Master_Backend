@@ -1,7 +1,6 @@
 ﻿using IFMS_Master_Backend.Models;
 
-
-namespace IFMS_Master_Backend.BAL.Interfaces
+namespace IFMS_Master_Backend.BAL.IServices
 {
     public interface IDetailHeadService
     {
@@ -10,6 +9,6 @@ namespace IFMS_Master_Backend.BAL.Interfaces
         Task<DetailHeadModel> CreateDetail(DetailHeadModel Detl);
         Task<bool> DeleteDetail(int Id);
         Task<bool> UpdateDetail(int Id, DetailHeadModel Detl);
-        
+
     }
 }

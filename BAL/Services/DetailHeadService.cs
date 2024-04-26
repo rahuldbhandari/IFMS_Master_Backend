@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using IFMS_Master_Backend.BAL.Interfaces;
+using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.Interface;
+using IFMS_Master_Backend.DAL.IRepositories;
 using IFMS_Master_Backend.Models;
 
 namespace IFMS_Master_Backend.BAL.Services
@@ -17,12 +17,12 @@ namespace IFMS_Master_Backend.BAL.Services
         }
         public async Task<IEnumerable<DetailHeadModel>> getAllDetail()
         {
-            List<Detailhead> allDetailheadData = (List<Detailhead>)await _DetailHeadRepo.GetAllDetailHeads();
+            ICollection<DetailHead> allDetailheadData = await _DetailHeadRepo.GetAllDetailHeads();
             return _mapper.Map<List<DetailHeadModel>>(allDetailheadData);
         }
         public async Task<DetailHeadModel> CreateDetail(DetailHeadModel Detl)
         {
-            Detailhead? detailhead = _mapper.Map<Detailhead>(Detl);
+            DetailHead? detailhead = _mapper.Map<DetailHead>(Detl);
 
             if (_DetailHeadRepo.Add(detailhead))
             {
@@ -34,11 +34,10 @@ namespace IFMS_Master_Backend.BAL.Services
         }
         public async Task<DetailHeadModel> GetDetailHead(int Id)
         {
-            Detailhead detailhead = await _DetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted == false) ;
-           
+            DetailHead detailhead = await _DetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted == false);
+
 
             return _mapper.Map<DetailHeadModel>(detailhead);
-
         }
 
 
@@ -46,7 +45,7 @@ namespace IFMS_Master_Backend.BAL.Services
         public async Task<bool> DeleteDetail(int Id)
         {
             //var userToDelete = await _UserRepo.GetUserById(userId);
-            Detailhead DetailHeadToDelete = await _DetailHeadRepo.GetSingleAysnc(Delt => Delt.Id == Id);
+            DetailHead DetailHeadToDelete = await _DetailHeadRepo.GetSingleAysnc(Delt => Delt.Id == Id);
 
             if (DetailHeadToDelete == null)
             {
@@ -62,7 +61,7 @@ namespace IFMS_Master_Backend.BAL.Services
 
         public async Task<bool> UpdateDetail(int Id, DetailHeadModel Detl)
         {
-            Detailhead DetailHeadToUpdate = await _DetailHeadRepo.GetSingleAysnc(Delt => Delt.Id == Id);
+            DetailHead DetailHeadToUpdate = await _DetailHeadRepo.GetSingleAysnc(Delt => Delt.Id == Id);
             if (DetailHeadToUpdate == null)
             {
                 // User not found
@@ -75,7 +74,6 @@ namespace IFMS_Master_Backend.BAL.Services
             return true;
         }
 
-      
+
     }
 }
-

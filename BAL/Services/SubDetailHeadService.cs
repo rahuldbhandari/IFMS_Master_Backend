@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using IFMS_Master_Backend.BAL.Interfaces;
+using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.Interface;
-
+using IFMS_Master_Backend.DAL.IRepositories;
 using IFMS_Master_Backend.Models;
-using IFMS_Master_Backend.BAL.Interfaces;
-using IFMS_Master_Backend.DAL.Interface;
 
 namespace IFMS_Master_Backend.BAL.Services
 {
@@ -73,8 +70,8 @@ namespace IFMS_Master_Backend.BAL.Services
 
         public async Task<SubDetailHeadModel> GetSubDetailHead(int Id)
         {
-            SubDetailHead subdetail = await _SubDetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted==false);
-            if(subdetail == null)
+            SubDetailHead subdetail = await _SubDetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted == false);
+            if (subdetail == null)
             {
                 return null;
             }
@@ -82,4 +79,3 @@ namespace IFMS_Master_Backend.BAL.Services
         }
     }
 }
-
