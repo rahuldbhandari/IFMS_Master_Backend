@@ -1,4 +1,33 @@
+using AutoMapper;
+using IFMS_Master_Backend.DAL.Interfaces;
+using IFMS_Master_Backend.DAL.Repositories;
+using IFMS_Master_Backend.DAL;
+using Microsoft.EntityFrameworkCore;
+using IFMS_Master_Backend.BAL.Interfaces;
+using IFMS_Master_Backend.BAL.Servises;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<ifmsContext>(options =>
+options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+options => options.EnableRetryOnFailure(10, TimeSpan.FromSeconds(5), null)
+), ServiceLifetime.Transient);
+
+// Add AutoMapper 
+builder.Services.AddAutoMapper(typeof(Program));
+
+// Repositories
+
+builder.Services.AddTransient<IMajorHeadRepo, MajorHeadRepo>();
+builder.Services.AddTransient<ISubMajorHeadRepo, SubMajorHeadRepo>();
+builder.Services.AddTransient<IMinorHeadRepo, MinorHeadRepo>();
+
+//Services
+builder.Services.AddTransient<IMajorHeadService, MajorHeadService>();
+builder.Services.AddTransient<ISubMajorHeadService, SubMajorHeadService>();
+builder.Services.AddTransient<IMinorHeadService, MinorHeadService>();
+
 
 // Add services to the container.
 
