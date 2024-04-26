@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using IFMS_Master_Backend.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace IFMS_Master_Backend.DAL
+namespace IFMS_Master_Backend.DAL.Entities
 {
     public partial class ifmsContext : DbContext
     {

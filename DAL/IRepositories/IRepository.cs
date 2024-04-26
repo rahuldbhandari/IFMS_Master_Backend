@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
-namespace IFMS_Master_Backend.DAL.Interfaces
+namespace IFMS_Master_Backend.DAL.IRepositories
 {
     public interface IRepository<T>
     {

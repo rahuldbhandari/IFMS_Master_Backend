@@ -1,10 +1,10 @@
 using AutoMapper;
 using IFMS_Master_Backend.DAL.Interfaces;
 using IFMS_Master_Backend.DAL.Repositories;
-using IFMS_Master_Backend.DAL;
 using Microsoft.EntityFrameworkCore;
 using IFMS_Master_Backend.BAL.Interfaces;
 using IFMS_Master_Backend.BAL.Servises;
+using IFMS_Master_Backend.DAL.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

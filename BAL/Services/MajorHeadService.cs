@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.Interfaces;
-using IFMS_Master_Backend.DAL;
-using IFMS_Master_Backend.BAL.Interfaces;
 
-namespace IFMS_Master_Backend.BAL.Servises
+using IFMS_Master_Backend.DAL;
+
+using IFMS_Master_Backend.BAL.IServices;
+using IFMS_Master_Backend.DAL.IRepositories;
+
+namespace IFMS_Master_Backend.BAL.Services
 {
     public class MajorHeadService : IMajorHeadService
     {
