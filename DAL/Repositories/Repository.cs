@@ -1,7 +1,7 @@
-﻿using IFMS_Master_Backend.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using IFMS_Master_Backend.DAL.IRepositories;
 
 namespace IFMS_Master_Backend.DAL.Repositories
 {

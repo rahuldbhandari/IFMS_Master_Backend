@@ -1,10 +1,10 @@
 using AutoMapper;
-using IFMS_Master_Backend.DAL.Interfaces;
 using IFMS_Master_Backend.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
-using IFMS_Master_Backend.BAL.Interfaces;
-using IFMS_Master_Backend.BAL.Servises;
 using IFMS_Master_Backend.DAL.Entities;
+using IFMS_Master_Backend.DAL.IRepositories;
+using IFMS_Master_Backend.BAL.IServices;
+using IFMS_Master_Backend.BAL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(option => option.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
 

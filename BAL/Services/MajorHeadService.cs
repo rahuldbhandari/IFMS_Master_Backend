@@ -52,14 +52,14 @@ namespace IFMS_Master_Backend.BAL.Services
 
         public async Task<bool> DeleteHead(int Id)
         {
-            MajorHead headToUpdate = await _MajorHeadRepo.GetSingleAysnc(head => head.Id == Id);
-            if (headToUpdate == null)
+            MajorHead headToDelete = await _MajorHeadRepo.GetSingleAysnc(head => head.Id == Id);
+            if (headToDelete == null)
             {
                 // Head not found
                 return false;
             }
-            headToUpdate.IsDeleted = true;
-            var result = _MajorHeadRepo.Update(headToUpdate);
+            headToDelete.IsDeleted = true;
+            var result = _MajorHeadRepo.Update(headToDelete);
             _MajorHeadRepo.SaveChangesManaged();
             return true;
             /*//var headToDelete = await _HeadRepo.GetHeadById(Id);

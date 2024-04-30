@@ -1,5 +1,5 @@
 ﻿using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.Interfaces;
+using IFMS_Master_Backend.DAL.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFMS_Master_Backend.DAL.Repositories
