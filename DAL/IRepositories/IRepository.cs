@@ -9,7 +9,7 @@ namespace IFMS_Master_Backend.DAL.IRepositories
         Task<ICollection<T>> GetAllByConditionAsync(Expression<Func<T, bool>> condition);
 
         IQueryable<T> GetAll();
-        Task<ICollection<T>> GetAllAsync();
+        Task<ICollection<T>> GetDdoDetail();
 
         IQueryable<T> GetSingle(Expression<Func<T, bool>> condition);
 
