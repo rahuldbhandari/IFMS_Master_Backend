@@ -52,6 +52,23 @@ namespace IFMS_Master_Backend.Controllers
             return response;
 
         }
+        [HttpGet("MajorHeadByCode/{Code}")]
+        public async Task<ServiceResponse<MajorHeadModel>> getByCode(string Code)
+        {
+            ServiceResponse<MajorHeadModel> response = new ServiceResponse<MajorHeadModel>();
+            try
+            {
+                response.result = await _majorHeadService.GetHeadByCode(Code);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
+        }
 
         [HttpPost("MajorHeadAdd")]
 
