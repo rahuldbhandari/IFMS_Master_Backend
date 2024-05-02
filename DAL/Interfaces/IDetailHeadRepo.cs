@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 
 namespace IFMS_Master_Backend.DAL.Interface
 {
-    public interface IDetailHeadRepo : IRepository<Detailhead>
+    public interface IDetailHeadRepo : IRepository<DetailHead>
     {
-        public Task<ICollection<Detailhead>> GetAllDetailHeads();
+        public Task<ICollection<DetailHead>> GetAllDetailHeads();
         
 
 

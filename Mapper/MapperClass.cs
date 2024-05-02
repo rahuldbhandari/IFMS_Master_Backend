@@ -3,13 +3,13 @@
 using IFMS_Master_Backend.Models;
 using IFMS_Master_Backend.DAL.Entities;
 
-namespace DetailHead.Helper
+namespace Detailhead.Helper
 {
     public class MapperClass : Profile
     {
         public MapperClass() {
-            CreateMap<Detailhead, DetailHeadModel>();
-            CreateMap<DetailHeadModel, Detailhead>();
+            CreateMap<DetailHead, DetailHeadModel>();
+            CreateMap<DetailHeadModel, DetailHead>();
             CreateMap<SubDetailHead, SubDetailHeadModel>();
             CreateMap<SubDetailHeadModel, SubDetailHead>();
                 }

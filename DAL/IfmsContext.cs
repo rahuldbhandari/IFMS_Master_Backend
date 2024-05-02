@@ -16,7 +16,7 @@ namespace IFMS_Master_Backend.DAL.Entities
         {
         }
 
-        public virtual DbSet<Detailhead> DetailHeads { get; set; } = null!;
+        public virtual DbSet<DetailHead> DetailHeads { get; set; } = null!;
         public virtual DbSet<SubDetailHead> SubDetailHeads { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +26,7 @@ namespace IFMS_Master_Backend.DAL.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Detailhead>(entity =>
+            modelBuilder.Entity<DetailHead>(entity =>
             {
                 entity.ToTable("detail_head", "master");
 
