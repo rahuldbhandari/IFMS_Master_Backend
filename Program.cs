@@ -1,10 +1,12 @@
+
+
 using AutoMapper;
-using IFMS_Master_Backend.DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
-using IFMS_Master_Backend.DAL.Entities;
-using IFMS_Master_Backend.DAL.IRepositories;
 using IFMS_Master_Backend.BAL.IServices;
 using IFMS_Master_Backend.BAL.Services;
+using IFMS_Master_Backend.DAL.Entities;
+using IFMS_Master_Backend.DAL.IRepositories;
+using IFMS_Master_Backend.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +24,20 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IMajorHeadRepo, MajorHeadRepo>();
 builder.Services.AddTransient<ISubMajorHeadRepo, SubMajorHeadRepo>();
 builder.Services.AddTransient<IMinorHeadRepo, MinorHeadRepo>();
+builder.Services.AddTransient<IDetailHeadRepo, DetailHeadRepo>();
+builder.Services.AddTransient<ISubDetailHeadRepo, SubDetailHeadRepo>();
+/*builder.Services.AddTransient<IDdoRepo, DdoRepo>();
+builder.Services.AddTransient<ITreasuryRepo, TreasuryRepo>();*/
+
 
 //Services
 builder.Services.AddTransient<IMajorHeadService, MajorHeadService>();
 builder.Services.AddTransient<ISubMajorHeadService, SubMajorHeadService>();
 builder.Services.AddTransient<IMinorHeadService, MinorHeadService>();
+builder.Services.AddTransient<IDetailHeadService, DetailHeadService>();
+builder.Services.AddTransient<ISubDetailHeadService, SubDetailHeadService>();
+/*builder.Services.AddTransient<IDdoService, DdoService>();
+builder.Services.AddTransient<ITreasuryService, TreasuryService>();*/
 
 
 // Add services to the container.

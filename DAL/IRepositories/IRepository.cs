@@ -14,7 +14,7 @@ namespace IFMS_Master_Backend.DAL.IRepositories
         IQueryable<T> GetSingle(Expression<Func<T, bool>> condition);
 
         Task<T> GetSingleAysnc(Expression<Func<T, bool>> condition);
-       // bool Get(T entity);
+        // bool Get(T entity);
         bool Add(T entity);
         bool Update(T entity);
         bool Delete(T entity);

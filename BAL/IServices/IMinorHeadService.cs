@@ -1,4 +1,4 @@
-﻿using IFMS_Master_Backend.DAL;
+﻿using IFMS_Master_Backend.Models;
 
 namespace IFMS_Master_Backend.BAL.IServices
 {

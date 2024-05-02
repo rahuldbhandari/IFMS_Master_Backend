@@ -66,8 +66,6 @@ namespace IFMS_Master_Backend.DAL.Repositories
             return await result.ToListAsync();
         }
 
-
-
         public IQueryable<T> GetSingle(Expression<Func<T, bool>> condition)
         {
             IQueryable<T> result = ifmsContext.Set<T>();
@@ -79,8 +77,6 @@ namespace IFMS_Master_Backend.DAL.Repositories
 
             return retValue;
         }
-
-
         public List<T> GetMultiple(Expression<Func<T, bool>> condition)
         {
             return ifmsContext.Set<T>().Where(condition).ToList();
@@ -118,7 +114,6 @@ namespace IFMS_Master_Backend.DAL.Repositories
             throw new ArgumentException("Invalid property selector");
         }
 
-
         public bool Add(T entity)
         {
             ifmsContext.Set<T>().Add(entity);
@@ -142,6 +137,7 @@ namespace IFMS_Master_Backend.DAL.Repositories
         {
             ifmsContext.SaveChanges();
         }
+
 
     }
 }
