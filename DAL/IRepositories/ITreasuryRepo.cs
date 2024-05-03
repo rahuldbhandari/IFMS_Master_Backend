@@ -1,6 +1,10 @@
-﻿namespace IFMS_Master_Backend.DAL.IRepositories
+﻿using IFMS_Master_Backend.DAL.Entities;
+
+namespace IFMS_Master_Backend.DAL.IRepositories
 {
-    public class ITreasuryRepo
+    public interface ITreasuryRepo : IRepository<Treasury>
+
     {
+        public Task<ICollection<Treasury>> GetAllTreasuryDetail();
     }
 }

@@ -60,7 +60,7 @@ namespace IFMS_Master_Backend.DAL.Repositories
             return result;
         }
 
-        public async Task<ICollection<T>> GetAllAsync()
+        public async Task<ICollection<T>> GetDdoDetail()
         {
             IQueryable<T> result = ifmsContext.Set<T>();
             return await result.ToListAsync();
