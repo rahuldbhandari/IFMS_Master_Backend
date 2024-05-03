@@ -6,6 +6,7 @@ namespace IFMS_Master_Backend.BAL.IServices
     {
         Task<ICollection<MinorHeadModel>> getAllMinorHead();
         Task<MinorHeadModel> GetMinorHeadById(int Id);
+        Task<MinorHeadModel> GetHeadByCode(string Code);
         Task<MinorHeadModel> CreateMinorHead(MinorHeadModel hed);
         //Task<MinorHeadModel> CreateMinorHead(MinorHeadModel hed);
         Task<bool> DeleteMinorHead(int Id);

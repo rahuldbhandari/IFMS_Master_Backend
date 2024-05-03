@@ -39,7 +39,13 @@ namespace IFMS_Master_Backend.BAL.Services
 
             return _mapper.Map<DetailHeadModel>(detailhead);
         }
+        public async Task<DetailHeadModel> GetHeadByCode(string Code)
+        {
+            DetailHead detailhead = await _DetailHeadRepo.GetSingleAysnc(delt => delt.Code == Code && delt.IsDeleted == false);
 
+
+            return _mapper.Map<DetailHeadModel>(detailhead);
+        }
 
 
         public async Task<bool> DeleteDetail(int Id)

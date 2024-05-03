@@ -32,6 +32,14 @@ namespace IFMS_Master_Backend.BAL.Services
 
             return _mapper.Map<MinorHeadModel>(minorHeads);
         }
+        public async Task<MinorHeadModel> GetHeadByCode(string Code)
+        {
+            MinorHead minorHeads = await _MinorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.IsDeleted == false);
+            //_MajorHeadRepo.GetAllByCondition(a => a.IsDeleted == false);
+
+
+            return _mapper.Map<MinorHeadModel>(minorHeads);
+        }
 
         public async Task<MinorHeadModel> CreateMinorHead(MinorHeadModel hed)
         {

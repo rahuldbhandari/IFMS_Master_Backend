@@ -6,6 +6,7 @@ namespace IFMS_Master_Backend.BAL.IServices
     {
         Task<IEnumerable<SubDetailHeadModel>> getAllSubDetail();
         Task<SubDetailHeadModel> GetSubDetailHead(int Id);
+        Task<SubDetailHeadModel> GetHeadByCode(string Code);
         Task<SubDetailHeadModel> CreateSubDetail(SubDetailHeadModel SubDe);
         Task<bool> DeleteSubDetail(int Id);
         Task<bool> UpdateSubDetail(int Id, SubDetailHeadModel SubDe);

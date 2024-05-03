@@ -20,6 +20,27 @@ namespace IFMS_Master_Backend.BAL.Services
             List<SubDetailHead> allSubDetailheadData = (List<SubDetailHead>)await _SubDetailHeadRepo.GetAllSubDetailHeads();
             return _mapper.Map<List<SubDetailHeadModel>>(allSubDetailheadData);
         }
+
+        public async Task<SubDetailHeadModel> GetSubDetailHead(int Id)
+        {
+            SubDetailHead subdetail = await _SubDetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted == false);
+            if (subdetail == null)
+            {
+                return null;
+            }
+            return _mapper.Map<SubDetailHeadModel>(subdetail);
+        }
+
+        public async Task<SubDetailHeadModel> GetHeadByCode(string Code)
+        {
+            SubDetailHead subdetail = await _SubDetailHeadRepo.GetSingleAysnc(delt => delt.Code == Code && delt.IsDeleted == false);
+            if (subdetail == null)
+            {
+                return null;
+            }
+            return _mapper.Map<SubDetailHeadModel>(subdetail);
+        }
+
         public async Task<SubDetailHeadModel> CreateSubDetail(SubDetailHeadModel SubDe)
         {
             SubDetailHead? subdetailhead = _mapper.Map<SubDetailHead>(SubDe);
@@ -68,14 +89,6 @@ namespace IFMS_Master_Backend.BAL.Services
             return true;
         }
 
-        public async Task<SubDetailHeadModel> GetSubDetailHead(int Id)
-        {
-            SubDetailHead subdetail = await _SubDetailHeadRepo.GetSingleAysnc(delt => delt.Id == Id && delt.IsDeleted == false);
-            if (subdetail == null)
-            {
-                return null;
-            }
-            return _mapper.Map<SubDetailHeadModel>(subdetail);
-        }
+        
     }
 }

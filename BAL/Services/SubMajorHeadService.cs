@@ -28,7 +28,11 @@ namespace IFMS_Master_Backend.BAL.Services
             SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Id == Id && head.IsDeleted == false);
             return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
         }
-
+        public async Task<SubMajorHeadModel> GetHeadByCode(string Code)
+        {
+            SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.IsDeleted == false);
+            return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
+        }
 
         public async Task<SubMajorHeadModel> CreateSubHead(SubMajorHeadModel subhed)
         {

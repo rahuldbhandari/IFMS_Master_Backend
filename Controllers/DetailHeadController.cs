@@ -1,4 +1,5 @@
 ﻿using IFMS_Master_Backend.BAL.IServices;
+using IFMS_Master_Backend.BAL.Services;
 using IFMS_Master_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -34,8 +35,6 @@ namespace IFMS_Master_Backend.Controllers
         }
         [HttpPost("DetailHeadAdd")]
 
-
-
         public async Task<ServiceResponse<DetailHeadModel>> addDetailHead(DetailHeadModel Detl)
         {
             ServiceResponse<DetailHeadModel> response = new ServiceResponse<DetailHeadModel>();
@@ -50,6 +49,24 @@ namespace IFMS_Master_Backend.Controllers
                 response.errorMessage = "Error";
             }
             return response;
+        }
+
+        [HttpGet("DetailHeadByCode/{Code}")]
+        public async Task<ServiceResponse<DetailHeadModel>> getByCode(string Code)
+        {
+            ServiceResponse<DetailHeadModel> response = new ServiceResponse<DetailHeadModel>();
+            try
+            {
+                response.result = await _DetailHeadService.GetHeadByCode(Code);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
         }
 
         [HttpDelete("DetailHeadDelete/{Id}")]

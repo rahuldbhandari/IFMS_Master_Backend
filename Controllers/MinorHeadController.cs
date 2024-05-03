@@ -1,4 +1,5 @@
 using IFMS_Master_Backend.BAL.IServices;
+using IFMS_Master_Backend.BAL.Services;
 using IFMS_Master_Backend.DAL;
 using IFMS_Master_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,24 @@ namespace IFMS_Master_Backend.Controllers
                 response.errorMessage = "Error";
             }
             return response;
+        }
+
+        [HttpGet("MinorHeadByCode/{Code}")]
+        public async Task<ServiceResponse<MinorHeadModel>> getByCode(string Code)
+        {
+            ServiceResponse<MinorHeadModel> response = new ServiceResponse<MinorHeadModel>();
+            try
+            {
+                response.result = await _minorHeadService.GetHeadByCode(Code);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
         }
 
         [HttpPost("MinorHeadAdd")]
