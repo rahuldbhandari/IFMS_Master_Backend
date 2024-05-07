@@ -6,7 +6,8 @@ namespace IFMS_Master_Backend.BAL.IServices
     {
         Task<ICollection<SubMajorHeadModel>> getAllSubHead();
         Task<SubMajorHeadModel> getSubHeadById(int Id); 
-            Task<SubMajorHeadModel> GetHeadByCode(string Code);
+        Task<SubMajorHeadModel> GetHeadByCode(string Code);
+        Task<SubMajorHeadModel> GetHeadByCodeMajorHeadId(string Code,int MajorHeadId);
         Task<SubMajorHeadModel> CreateSubHead(SubMajorHeadModel hed);
         Task<bool> DeleteSubHead(int Id);
         Task<bool> UpdateSubHead(int Id, SubMajorHeadModel headData);

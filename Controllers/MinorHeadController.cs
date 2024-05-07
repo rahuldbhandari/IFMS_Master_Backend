@@ -53,24 +53,7 @@ namespace IFMS_Master_Backend.Controllers
             return response;
         }
 
-        [HttpGet("MinorHeadByCode/{Code}")]
-        public async Task<ServiceResponse<MinorHeadModel>> getByCode(string Code)
-        {
-            ServiceResponse<MinorHeadModel> response = new ServiceResponse<MinorHeadModel>();
-            try
-            {
-                response.result = await _minorHeadService.GetHeadByCode(Code);
-                response.statusCode = HttpStatusCode.Found;
-            }
-            catch (Exception ex)
-            {
-                response.statusCode = HttpStatusCode.NotFound;
-                response.errorMessage = "Error";
-            }
-            return response;
-
-        }
-
+        
         [HttpPost("MinorHeadAdd")]
 
         public async Task<ServiceResponse<MinorHeadModel>> addHead(MinorHeadModel minorHeaddata)
@@ -130,8 +113,42 @@ namespace IFMS_Master_Backend.Controllers
             }
             return serviceResponse;
         }
+        [HttpGet("MinorHeadByCode/{Code}")]
+        public async Task<ServiceResponse<MinorHeadModel>> getByCode(string Code)
+        {
+            ServiceResponse<MinorHeadModel> response = new ServiceResponse<MinorHeadModel>();
+            try
+            {
+                response.result = await _minorHeadService.GetHeadByCode(Code);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
+        }
 
 
+        [HttpGet("MinorHeadByCode/{Code}/{SubMajorId}")]
+        public async Task<ServiceResponse<MinorHeadModel>> GetHeadByCodeMSubajorId(string Code, int SubMajorId)
+        {
+            ServiceResponse<MinorHeadModel> response = new ServiceResponse<MinorHeadModel>();
+            try
+            {
+                response.result = await _minorHeadService.GetHeadByCodeMSubajorId(Code, SubMajorId);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
+        }
 
 
     }

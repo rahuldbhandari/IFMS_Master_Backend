@@ -121,8 +121,6 @@ namespace IFMS_Master_Backend.DAL.Entities
             {
                 entity.ToTable("minor_head", "master");
 
-                entity.HasIndex(e => e.Code, "UK_minor_head")
-                    .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -145,8 +143,7 @@ namespace IFMS_Master_Backend.DAL.Entities
             modelBuilder.Entity<SubDetailHead>(entity =>
             {
                 entity.ToTable("sub_detail_head", "master");
-                entity.HasIndex(e => e.Code, "UK_sub_detail_head")
-                    .IsUnique();
+                
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -171,8 +168,7 @@ namespace IFMS_Master_Backend.DAL.Entities
             {
                 entity.ToTable("sub_major_head", "master");
 
-                entity.HasIndex(e => e.Code, "UK_sub_major_head")
-                    .IsUnique();
+                
 
                 entity.Property(e => e.Id).HasColumnName("id");
 

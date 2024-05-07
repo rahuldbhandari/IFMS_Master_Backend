@@ -23,7 +23,9 @@ namespace IFMS_Master_Backend.BAL.Services
 
         public async Task<ICollection<MajorHeadModel>> getAllHead()
         {
-            ICollection<MajorHead> allHeadData = await _MajorHeadRepo.GetAllMajorHeads();
+            // ICollection<MajorHead> allHeadData = await _MajorHeadRepo.GetAllMajorHeads();
+            ICollection<MajorHead> allHeadData = await _MajorHeadRepo.GetAllByConditionAsync(m=>m.IsDeleted==false);
+
             return _mapper.Map<List<MajorHeadModel>>(allHeadData);
         }
 

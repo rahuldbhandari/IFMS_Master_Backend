@@ -54,23 +54,7 @@ namespace IFMS_Master_Backend.Controllers
             return response;
         }
 
-        [HttpGet("SubMajorHeadByCode/{Code}")]
-        public async Task<ServiceResponse<SubMajorHeadModel>> getByCode(string Code)
-        {
-            ServiceResponse<SubMajorHeadModel> response = new ServiceResponse<SubMajorHeadModel>();
-            try
-            {
-                response.result = await _subMajorHeadService.GetHeadByCode(Code);
-                response.statusCode = HttpStatusCode.Found;
-            }
-            catch (Exception ex)
-            {
-                response.statusCode = HttpStatusCode.NotFound;
-                response.errorMessage = "Error";
-            }
-            return response;
-
-        }
+        
         [HttpPost("SubMajorHeadAdd")]
 
         public async Task<ServiceResponse<SubMajorHeadModel>> addSubHead(SubMajorHeadModel subHeaddata)
@@ -129,7 +113,40 @@ namespace IFMS_Master_Backend.Controllers
             return serviceResponse;
         }
 
+        [HttpGet("SubMajorHeadByCode/{Code}")]
+        public async Task<ServiceResponse<SubMajorHeadModel>> getByCode(string Code)
+        {
+            ServiceResponse<SubMajorHeadModel> response = new ServiceResponse<SubMajorHeadModel>();
+            try
+            {
+                response.result = await _subMajorHeadService.GetHeadByCode(Code);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
 
+        }
+        [HttpGet("SubMajorHeadByCode/{Code}/{MajorHeadId}")]
+        public async Task<ServiceResponse<SubMajorHeadModel>> getByCodeMajorHeadId(string Code,int MajorHeadId)
+        {
+            ServiceResponse<SubMajorHeadModel> response = new ServiceResponse<SubMajorHeadModel>();
+            try
+            {
+                response.result = await _subMajorHeadService.GetHeadByCodeMajorHeadId(Code, MajorHeadId);
+                response.statusCode = HttpStatusCode.Found;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = HttpStatusCode.NotFound;
+                response.errorMessage = "Error";
+            }
+            return response;
+
+        }
 
     }
 }

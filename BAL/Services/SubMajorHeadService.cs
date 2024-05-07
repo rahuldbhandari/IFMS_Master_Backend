@@ -28,11 +28,7 @@ namespace IFMS_Master_Backend.BAL.Services
             SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Id == Id && head.IsDeleted == false);
             return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
         }
-        public async Task<SubMajorHeadModel> GetHeadByCode(string Code)
-        {
-            SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.IsDeleted == false);
-            return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
-        }
+        
 
         public async Task<SubMajorHeadModel> CreateSubHead(SubMajorHeadModel subhed)
         {
@@ -91,6 +87,17 @@ namespace IFMS_Master_Backend.BAL.Services
             var result = _SubMajorHeadRepo.Update(subHeadToUpdate);
             _SubMajorHeadRepo.SaveChangesManaged();
             return true;
+        }
+        public async Task<SubMajorHeadModel> GetHeadByCode(string Code)
+        {
+            SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.IsDeleted == false);
+            return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
+        }
+        public async Task<SubMajorHeadModel> GetHeadByCodeMajorHeadId(string Code,int MajorHeadId)
+        {
+            SubMajorHead subMajorHeads = await _SubMajorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.MajorHeadId == MajorHeadId && head.IsDeleted == false);
+            return _mapper.Map<SubMajorHeadModel>(subMajorHeads);
+            //return true;
         }
 
     }

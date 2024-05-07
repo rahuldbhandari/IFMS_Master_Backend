@@ -6,6 +6,7 @@ using IFMS_Master_Backend.DAL;
 
 using IFMS_Master_Backend.DAL.IRepositories;
 using IFMS_Master_Backend.Models;
+using IFMS_Master_Backend.DAL.Repositories;
 
 namespace IFMS_Master_Backend.BAL.Services
 {
@@ -99,7 +100,12 @@ namespace IFMS_Master_Backend.BAL.Services
             _MinorHeadRepo.SaveChangesManaged();
             return true;
         }
-
+        public async Task<MinorHeadModel> GetHeadByCodeMSubajorId(string Code, int SubMajorId)
+        {
+           MinorHead minorHeads = await _MinorHeadRepo.GetSingleAysnc(head => head.Code == Code && head.SubMajorId == SubMajorId && head.IsDeleted == false);
+            return _mapper.Map<MinorHeadModel>(minorHeads);
+            //return true;
+        }
 
     }
 }
